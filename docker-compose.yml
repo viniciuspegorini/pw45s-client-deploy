@@ -1,0 +1,24 @@
+########################### NETWORK
+networks:
+  web:
+    external: true
+  internal:
+    external: false
+
+########################### SERVICES
+services:
+  pw45s-client:
+    image: react-app:latest
+    container_name: pw45s-client
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.pw45s-client.rule=Host(`viniciuspegorini.com.br`)"
+      - "traefik.http.routers.pw45s-client.entrypoints=websecure"
+      - "traefik.http.routers.pw45s-client.tls.domains[0].main=viniciuspegorini.com.br"
+      - "traefik.http.routers.pw45s-client.tls.domains[0].sans=*.viniciuspegorini.com.br"
+      - "traefik.http.routers.pw45s-client.tls.certresolver=letsencrypt"
+    ports:
+      - 8100:80
+    networks:
+      - web
