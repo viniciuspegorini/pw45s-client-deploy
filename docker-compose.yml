@@ -8,7 +8,7 @@ networks:
 ########################### SERVICES
 services:
   pw45s-client:
-    image: pw45s-client:latest
+    image: react-app:latest
     container_name: pw45s-client
     restart: unless-stopped
     labels:
