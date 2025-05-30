@@ -26,7 +26,7 @@
 # # Copying our nginx.conf
 # COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-FROM node:20.19.2-alpine as build-step
+FROM node:18.15.0-alpine as build-step
 RUN mkdir /app
 WORKDIR /app
 COPY package.json /app
