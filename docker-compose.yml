@@ -8,16 +8,15 @@ networks:
 ########################### SERVICES
 services:
   pw45s-client:
-    image: react-app:latest
+    image: pw45s-client:latest
     container_name: pw45s-client
     restart: unless-stopped
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.pw45s-client.rule=Host(`viniciuspegorini.com.br`)"
       - "traefik.http.routers.pw45s-client.entrypoints=websecure"
-      - "traefik.http.routers.pw45s-client.tls.domains[0].main=viniciuspegorini.com.br"
-      - "traefik.http.routers.pw45s-client.tls.domains[0].sans=*.viniciuspegorini.com.br"
       - "traefik.http.routers.pw45s-client.tls.certresolver=letsencrypt"
+      - "traefik.http.services.pw45s-client.loadbalancer.server.port=80"
     ports:
       - 8100:80
     networks:
